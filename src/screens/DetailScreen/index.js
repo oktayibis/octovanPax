@@ -21,11 +21,11 @@ const Index = () => {
   // get passanger details from API
   const setPassangerById = useCallback(() => {
     dispatch(getPassangerById(paxId));
-  }, [dispatch, paxId]);
+  }, []);
 
   useEffect(() => {
     setPassangerById();
-  }, [paxId, setPassangerById]);
+  }, []);
 
   // Handle edit name
   const handleChangeName = useCallback(() => {
@@ -45,7 +45,7 @@ const Index = () => {
       'plain-text',
       selectedPax.name,
     );
-  }, []);
+  }, [dispatch, selectedPax]);
 
   return (
     <>
