@@ -12,11 +12,18 @@ export const getPaxList = async (pageNo = defaultParams.pageNo) => {
 };
 
 export const updatePaxName = async (paxId, name) => {
-  const patchUrl = `/${paxId}`;
+  const patchUrl = `${defaultParams.baseUrl}/${paxId}`;
   return await axios.patch(patchUrl, {name});
+};
+
+export const getWtihId = async (id) => {
+  console.log('id start');
+  const fetchByIdUrl = `${defaultParams.baseUrl}/${id}`;
+  return await axios.get(fetchByIdUrl);
 };
 
 export default {
   getPaxList,
   updatePaxName,
+  getWtihId,
 };

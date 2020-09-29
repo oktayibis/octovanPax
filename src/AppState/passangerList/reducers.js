@@ -2,6 +2,9 @@ import {
   GET_LIST_FAIL,
   GET_LIST_START,
   GET_LIST_SUCCESS,
+  GET_PASSANGER_BYID_FAIL,
+  GET_PASSANGER_BYID_START,
+  GET_PASSANGER_BYID_SUCCESS,
   UPDATE_LIST_FAIL,
   UPDATE_LIST_START,
   UPDATE_LIST_SUCCESS,
@@ -9,7 +12,6 @@ import {
   UPDATE_PAXNAME_START,
   UPDATE_PAXNAME_SUCCESS,
 } from './types';
-
 
 const INITIAL_STATE = {
   // First List Loading
@@ -24,6 +26,11 @@ const INITIAL_STATE = {
   // Fetch another ten pax
   updateListLoading: false,
   updateListError: null,
+
+  // Fetch one passger
+  selectedPax: null,
+  selectedPaxLoading: true,
+  selectedPaxError: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -51,9 +58,14 @@ export default (state = INITIAL_STATE, action) => {
         updateNameLoading: true,
       };
     case UPDATE_PAXNAME_SUCCESS:
+      let updatedName = {
+        ...state.selectedPax,
+        name: action.newName,
+      };
       return {
         ...state,
         updateNameLoading: false,
+        selectedPax: updatedName,
       };
     case UPDATE_PAXNAME_FAIL:
       return {
@@ -79,6 +91,24 @@ export default (state = INITIAL_STATE, action) => {
         updateListLoading: false,
         updateListError: action.error,
       };
+    case GET_PASSANGER_BYID_START:
+      return {
+        ...state,
+        selectedPaxLoading: true,
+      };
+    case GET_PASSANGER_BYID_SUCCESS:
+      return {
+        ...state,
+        selectedPax: action.selectedPax,
+        selectedPaxLoading: false,
+      };
+    case GET_PASSANGER_BYID_FAIL:
+      return {
+        ...state,
+        selectedPaxLoading: false,
+        selectedPaxError: action.error,
+      };
+
     default:
       return {...state};
   }

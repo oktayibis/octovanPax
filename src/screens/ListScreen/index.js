@@ -1,50 +1,59 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, ActivityIndicator} from 'react-native';
-
 import {useDispatch, useSelector} from 'react-redux';
-
 import {
   getlistAction,
   updateListAction,
 } from '../../AppState/passangerList/actions';
 import PassangerCard from '../../components/PassangerCard';
-import {Title} from '../../components/TextStyles';
-import {Container} from '../../components/ThemeStyles';
+import {Title} from '../../styles/TextStyles';
+import {Container} from '../../styles/ThemeStyles';
 
 const Index = () => {
-  const [pageNo, setPageNo] = useState(0);
-  const {passangerList, listFirstLoading, updateListLoading} = useSelector(
-    (state) => state.passangerState,
-  );
   const dispatch = useDispatch();
+  const [pageNo, setPageNo] = useState(0);
 
+  const {
+    passangerList,
+    listFirstLoading,
+    updateListLoading,
+    selectedPax,
+  } = useSelector((state) => state.passangerState);
+
+  useEffect(() => {
+    setList();
+  }, [setList, selectedPax]);
+
+  // Fetching first data from API
   const setList = React.useCallback(() => {
     dispatch(getlistAction());
   }, [dispatch]);
 
-  useEffect(() => {
-    setList();
-  }, [setList]);
-
+  // Load more pax when scroll reaches to end of list
   const loadMore = React.useCallback(() => {
     setPageNo(pageNo + 1);
     dispatch(updateListAction(pageNo));
-  }, [pageNo]);
+  }, []);
+
+  // Render each row in Flatlist
   const renderItem = ({item}) => <PassangerCard item={item} />;
 
-  const renderFooter = () =>
-    updateListLoading ? (
-      <View>
-        <ActivityIndicator size="large" />
-      </View>
+  // Render footer of Flatlist for handle promise with indicator
+  const renderFooter = React.useCallback(() => {
+    return updateListLoading ? (
+      <Container>
+        <ActivityIndicator />
+      </Container>
     ) : null;
+  }, [updateListLoading]);
+
   return (
     <>
       <Title>Passangers List</Title>
       {listFirstLoading ? (
-        <View>
-          <ActivityIndicator size="large" />
-        </View>
+        <Container>
+          <ActivityIndicator />
+        </Container>
       ) : (
         <Container>
           <FlatList

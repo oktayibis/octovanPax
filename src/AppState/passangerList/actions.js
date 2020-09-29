@@ -3,6 +3,9 @@ import {
   GET_LIST_FAIL,
   GET_LIST_START,
   GET_LIST_SUCCESS,
+  GET_PASSANGER_BYID_FAIL,
+  GET_PASSANGER_BYID_START,
+  GET_PASSANGER_BYID_SUCCESS,
   UPDATE_LIST_FAIL,
   UPDATE_LIST_START,
   UPDATE_LIST_SUCCESS,
@@ -35,10 +38,10 @@ export const updatePaxNameAction = (id, name) => {
     dispatch({type: UPDATE_PAXNAME_START});
     api
       .updatePaxName(id, name)
-      .then(() => dispatch({type: UPDATE_PAXNAME_SUCCESS}))
-      .catch((error) =>
-        dispatch({type: UPDATE_PAXNAME_FAIL, error: error.message}),
-      );
+      .then(() => dispatch({type: UPDATE_PAXNAME_SUCCESS, newName: name}))
+      .catch((error) => {
+        dispatch({type: UPDATE_PAXNAME_FAIL, error: error.message});
+      });
   };
 };
 
@@ -53,6 +56,26 @@ export const updateListAction = (pageNo) => {
       )
       .catch((error) =>
         dispatch({type: UPDATE_LIST_FAIL, error: error.message}),
+      );
+  };
+};
+
+// Fetch one passangers' info
+export const getPassangerById = (paxId) => {
+  console.log('dispatch', paxId);
+  return (dispatch) => {
+    dispatch({type: GET_PASSANGER_BYID_START});
+    api
+      .getWtihId(paxId)
+      .then((response) => {
+        console.log(response.data);
+        dispatch({
+          type: GET_PASSANGER_BYID_SUCCESS,
+          selectedPax: response.data,
+        });
+      })
+      .catch((error) =>
+        dispatch({type: GET_PASSANGER_BYID_FAIL, error: error.message}),
       );
   };
 };

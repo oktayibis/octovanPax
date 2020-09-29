@@ -1,20 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
-
+import {Distance, Colors, FontSizes} from '../../styles/constant';
 // Styles
 const CardContainer = styled.TouchableOpacity`
-  margin: 8px;
-  padding: 16px;
-  background-color: #eeecda;
+  margin: ${Distance.closer};
+  padding: ${Distance.regular};
+  background-color: ${Colors.light};
   border-radius: 10px;
-  align-items: center;
   justify-content: center;
+  shadow-color: #ddd;
+  shadow-offset: 1px 1px;
+  shadow-opacity: 1;
+  shadow-radius: 2px;
 `;
 
 const CardText = styled.Text`
-  color: #b83b5e;
-  font-size: 20px;
+  color: ${Colors.darkRed};
+  font-size: ${FontSizes.regular};
+`;
+
+const CardContent = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export default ({item}) => {
@@ -23,7 +31,10 @@ export default ({item}) => {
   return (
     <CardContainer
       onPress={() => navigation.navigate('DetailScreen', {paxId: item._id})}>
-      <CardText>{item.name}</CardText>
+      <CardContent>
+        <CardText>{item.name}</CardText>
+        <CardText>{'>'}</CardText>
+      </CardContent>
     </CardContainer>
   );
 };
