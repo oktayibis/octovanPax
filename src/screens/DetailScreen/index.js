@@ -1,14 +1,15 @@
-import React, {useEffect, useCallback, useState} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   getPassangerById,
   updatePaxNameAction,
 } from '../../AppState/passangerList/actions';
-import {Image, Text, ActivityIndicator, Alert, Modal} from 'react-native';
+import {Image, ActivityIndicator, Alert} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {Container} from '../../styles/ThemeStyles';
 import {Title, SubTitle} from '../../styles/TextStyles';
 import CostomRow from '../../components/CostomRow';
+
 const Index = () => {
   const route = useRoute();
   const dispatch = useDispatch();
@@ -17,10 +18,10 @@ const Index = () => {
     (state) => state.passangerState,
   );
 
-  // get passanger detail from API
+  // get passanger details from API
   const setPassangerById = useCallback(() => {
     dispatch(getPassangerById(paxId));
-  }, []);
+  }, [dispatch, paxId]);
 
   useEffect(() => {
     setPassangerById();

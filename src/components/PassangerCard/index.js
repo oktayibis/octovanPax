@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 import {Distance, Colors, FontSizes} from '../../styles/constant';
+
 // Styles
 const CardContainer = styled.TouchableOpacity`
   margin: ${Distance.closer};

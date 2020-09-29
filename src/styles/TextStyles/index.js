@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import {FontSizes, Colors, Distance} from '../constant';
 
+// Costom Text Styles
+
 export const Title = styled.Text`
   font-size: ${FontSizes.large};
   font-weight: 600;
@@ -16,5 +18,5 @@ export const SubTitle = styled.Text`
   text-align: center;
   background-color: ${Colors.purple};
   padding: ${Distance.closer};
-  color: ${Colors.light}
+  color: ${Colors.light};
 `;

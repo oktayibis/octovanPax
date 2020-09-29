@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {StatusBar} from 'react-native';
 import {applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import ReduxThunk from 'redux-thunk';

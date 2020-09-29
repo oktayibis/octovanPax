@@ -1,3 +1,5 @@
+// Theme constants
+
 export const Colors = {
   light: '#eeecda',
   orange: '#f08a5d',

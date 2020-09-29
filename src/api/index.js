@@ -1,9 +1,11 @@
 import axios from 'axios';
+
 const defaultParams = {
   baseUrl: 'https://api.instantwebtools.net/v1/passenger',
   size: 10,
   pageNo: 0,
 };
+
 //axios.defaults.baseURL = defaultParams.baseUrl;
 
 export const getPaxList = async (pageNo = defaultParams.pageNo) => {
@@ -17,7 +19,6 @@ export const updatePaxName = async (paxId, name) => {
 };
 
 export const getWtihId = async (id) => {
-  console.log('id start');
   const fetchByIdUrl = `${defaultParams.baseUrl}/${id}`;
   return await axios.get(fetchByIdUrl);
 };

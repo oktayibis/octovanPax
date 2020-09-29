@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Distance, Colors, FontSizes} from '../../styles/constant';
+
 // Styles
 const RowContainer = styled.View`
   margin: ${Distance.closer};

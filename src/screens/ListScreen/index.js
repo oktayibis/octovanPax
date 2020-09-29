@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList, ActivityIndicator} from 'react-native';
+import {FlatList, ActivityIndicator} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   getlistAction,

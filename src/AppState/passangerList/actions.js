@@ -16,10 +16,7 @@ import {
 
 // Get first list from api
 export const getlistAction = () => {
-  console.log('start');
-
   return (dispatch) => {
-    console.log('dispatch');
     dispatch({type: GET_LIST_START});
     api
       .getPaxList()
@@ -60,9 +57,8 @@ export const updateListAction = (pageNo) => {
   };
 };
 
-// Fetch one passangers' info
+// Fetch one passangers' detail info
 export const getPassangerById = (paxId) => {
-  console.log('dispatch', paxId);
   return (dispatch) => {
     dispatch({type: GET_PASSANGER_BYID_START});
     api

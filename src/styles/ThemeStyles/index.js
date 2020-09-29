@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import {Distance} from '../constant';
+
+// Common Styles
 export const Container = styled.View`
   padding: ${Distance.closer};
   margin: ${Distance.closer};

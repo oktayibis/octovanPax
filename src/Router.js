@@ -17,7 +17,11 @@ const Router = () => {
           component={ListScreen}
           options={{title: 'Passangers List Page'}}
         />
-        <Stack.Screen name="DetailScreen" component={DetailScreen} />
+        <Stack.Screen
+          name="DetailScreen"
+          component={DetailScreen}
+          options={{title: 'Details Screen'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
