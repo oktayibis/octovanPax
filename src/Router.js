@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const Router = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="ListScreen">
         <Stack.Screen
           name="ListScreen"
           component={ListScreen}

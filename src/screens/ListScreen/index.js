@@ -11,7 +11,7 @@ import {Container} from '../../styles/ThemeStyles';
 
 const Index = () => {
   const dispatch = useDispatch();
-  const [pageNo, setPageNo] = useState(0);
+  const [pageNo, setPageNo] = useState(1);
 
   const {
     passangerList,
@@ -27,13 +27,13 @@ const Index = () => {
   // Fetching first data from API
   const setList = React.useCallback(() => {
     dispatch(getlistAction());
-  }, [dispatch]);
+  }, []);
 
   // Load more pax when scroll reaches to end of list
   const loadMore = React.useCallback(() => {
     setPageNo(pageNo + 1);
     dispatch(updateListAction(pageNo));
-  }, []);
+  }, [dispatch, pageNo]);
 
   // Render each row in Flatlist
   const renderItem = ({item}) => <PassangerCard item={item} />;
