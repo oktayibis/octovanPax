@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {FontSizes, Colors, Distance} from '../constant';
 
-// Costom Text Styles
+// Custom Text Styles
 
 export const Title = styled.Text`
   font-size: ${FontSizes.large};
