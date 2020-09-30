@@ -64,7 +64,6 @@ export const getPassangerById = (paxId) => {
     api
       .getWtihId(paxId)
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: GET_PASSANGER_BYID_SUCCESS,
           selectedPax: response.data,
